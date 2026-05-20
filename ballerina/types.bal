@@ -115,5 +115,12 @@ public enum MISTRAL_AI_MODEL_NAMES {
     OPEN_CODESTRAL_MAMBA = "open-codestral-mamba"
 }
 
+# Embedding model types for Mistral AI
+@display {label: "Mistral AI Embedding Model Names"}
+public enum MISTRAL_AI_EMBEDDING_MODEL_NAMES {
+    MISTRAL_EMBED = "mistral-embed",
+    CODESTRAL_EMBED = "codestral-embed"
+}
+
 # Mistral message record.
 type MistralMessages mistral:AssistantMessage|mistral:SystemMessage|mistral:UserMessage|mistral:ToolMessage;

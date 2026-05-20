@@ -18,7 +18,7 @@ import ballerina/http;
 import ballerina/test;
 import ballerinax/mistral;
 
-service /llm on new http:Listener(8080) {
+service /llm on new http:Listener(8090) {
     // bug: https://github.com/ballerina-platform/ballerina-library/issues/8048
     resource function post chat/completions(@http:Payload json payload)returns mistral:ChatCompletionResponse|error {
         test:assertEquals(payload.model, MINISTRAL_8B_2410);
@@ -45,5 +45,11 @@ service /llm on new http:Listener(8080) {
 
         test:assertEquals(parameters, getExpectedParameterSchema(initialText));
         return getTestServiceResponse(initialText);
+    }
+
+    // bug: https://github.com/ballerina-platform/ballerina-library/issues/8048
+    resource function post embeddings(@http:Payload json payload)
+            returns mistral:EmbeddingResponse|http:Response|error {
+        return getEmbeddingServiceResponse(payload);
     }
 }
